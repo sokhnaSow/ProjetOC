@@ -8,6 +8,8 @@ import java.util.Random;
 public class Donnees {
     private int[] poids;
     private int[] utilites;
+    private int P; // Poids du sac 1
+    private int Q; // Poids du sac 2
 
     public Donnees(int[] poids, int[] utilites) {
         this.poids = poids;
@@ -28,6 +30,30 @@ public class Donnees {
 
     public void setUtilites(int[] utilites) {
         this.utilites = utilites;
+    }
+    public int sommePoids(){ // Somme des poids de tout les objets
+        int pMax = 0, i;
+        for(i=0;i<this.poids.length;i++){
+            pMax+=poids[i];
+        }
+        return pMax;
+    }
+    public int PoidsMin(){ // Somme des poids de tout les objets
+        int pMin = 10; // On initialise le poids min au poids max pouvant être générer
+        for(int i=0;i<this.poids.length;i++){
+            if(poids[i] < pMin){
+                pMin = poids[i];
+            }
+        }
+        return pMin;
+    }
+    public int generateP(){ // génère un nb aléatoire compris entre le poids min parmis les objets et le poids total
+        int p, pMin, totalPoids;
+        pMin = PoidsMin();
+        totalPoids = sommePoids();
+        Random rand = new Random();
+        p = rand.nextInt(totalPoids - pMin + 1)+ pMin;
+        return p;
     }
     public int genratePi(){
         int pi;
@@ -53,9 +79,14 @@ public class Donnees {
              this.poids[i] = genratePi();
              this.utilites[i] = genrateWi();
         }
+        int P = generateP(); // Poids maximum pour le sac 1
+        int Q = generateP(); // Poids maximum pour le sac 2
+        this.P = P;
+        this.Q = Q;
     }
     public void afficheDonnees(){
         int nbreObjet = this.poids.length;
+        System.out.println("P = "+this.P+"\t"+"Q = "+this.Q);
         System.out.print("i\t");
         for (int i = 0; i<nbreObjet; i++){
             System.out.print(i+1 +"\t");

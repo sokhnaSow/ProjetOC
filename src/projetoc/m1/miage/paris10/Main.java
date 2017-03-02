@@ -9,6 +9,12 @@ public class Main {
         int[] utilite = new int[6];
         Donnees donnees = new Donnees(poids,utilite);
         donnees.generateDonnees();
+        AlgoGlouton glouton = new AlgoGlouton(donnees);
+        glouton.generateRapportWiPi();
+        glouton.TrierParRapportWiPi();
         donnees.afficheDonnees();
+        glouton.afficheRapportWiPi();
+        glouton.remplirSacs();
+
     }
 }

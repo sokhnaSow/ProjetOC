@@ -50,12 +50,12 @@ public class Donnees {
     public int generateP(){ // génère un nb aléatoire compris entre le poids min parmis les objets et le poids total
         int p, pMin, totalPoids;
         pMin = PoidsMin();
-        totalPoids = sommePoids();
+        totalPoids = sommePoids() - 4;
         Random rand = new Random();
         p = rand.nextInt(totalPoids - pMin + 1)+ pMin;
         return p;
     }
-    public int genratePi(){
+    public int generatePi(){
         int pi;
         Random rand = new Random();
         pi = rand.nextInt(9-1+1)+1; // Un entier compris entre 1 et 9
@@ -64,7 +64,7 @@ public class Donnees {
         }
         return pi;
     }
-    public int genrateWi(){
+    public int generateWi(){
         int wi;
         Random rand = new Random();
         wi = rand.nextInt(61-10+1)+10; // Un entier compris entre 10 et 61
@@ -75,9 +75,10 @@ public class Donnees {
     }
     public void generateDonnees(){  // Rempli avec le poids et l'utilité de chaque objet
         int nbreObjet = this.poids.length; // Le nombre d'objets est égale à la taille du tableau
+        int wi;
         for(int i=0; i<nbreObjet; i++){
-             this.poids[i] = genratePi();
-             this.utilites[i] = genrateWi();
+             this.poids[i] = generatePi();
+             this.utilites[i] = generateWi();
         }
         int P = generateP(); // Poids maximum pour le sac 1
         int Q = generateP(); // Poids maximum pour le sac 2
@@ -87,19 +88,35 @@ public class Donnees {
     public void afficheDonnees(){
         int nbreObjet = this.poids.length;
         System.out.println("P = "+this.P+"\t"+"Q = "+this.Q);
-        System.out.print("i\t");
+        System.out.print("i\t\t");
         for (int i = 0; i<nbreObjet; i++){
             System.out.print(i+1 +"\t");
         }
         System.out.println("");
-        System.out.print("Pi\t");
+        System.out.print("Pi\t\t");
         for (int i = 0; i<nbreObjet; i++){
             System.out.print(poids[i]+"\t");
         }
         System.out.println("");
-        System.out.print("Wi\t");
+        System.out.print("Wi\t\t");
         for (int i = 0; i<nbreObjet; i++){
             System.out.print(utilites[i]+"\t");
         }
+    }
+
+    public int getP() {
+        return P;
+    }
+
+    public void setP(int p) {
+        P = p;
+    }
+
+    public int getQ() {
+        return Q;
+    }
+
+    public void setQ(int q) {
+        Q = q;
     }
 }

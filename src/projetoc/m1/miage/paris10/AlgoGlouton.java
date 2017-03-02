@@ -9,6 +9,7 @@ import java.util.List;
 public class AlgoGlouton {
     private Donnees donnees;
     private int[] rapportUtilitePoids;
+    private int utiliteTotal;
 
     public AlgoGlouton(Donnees donnees) {
         this.donnees = donnees;
@@ -58,7 +59,7 @@ public class AlgoGlouton {
         int[] utilites = donnees.getUtilites();
         List sac1 = new ArrayList<Integer>();
         List sac2 = new ArrayList<Integer>();
-        int utiliteTotal,indice,objet=0;
+        int indice,objet=0;
         int Ps1=1, wisac1=0; // Poids total des objets dans le sac 1 et l'utilité total
         int Ps2=1, wisac2=0;
         for(int i=0; i<tailleMax;i++ ){
